@@ -4,4 +4,23 @@
 {% block header_image %}
 <img class="masthead-avatar mb-5" src="{% static 'assets/blog/register.png' %}" alt="..." />
 {% endblock header_image %}
-{% block header_title %}Register a New User{% endblock header_title %}Register a New User
+
+{% block content %}
+<h1>Register a New User</h1>
+<form action="/users/register/" method="POST" class="p-4 border rounded bg-light text-dark">
+    {% csrf_token %} <!-- Security token for cross=site request forgery attacks -->
+    <div class="mb-3">
+        <label for="{{form.username_id_for_label}}">Username</label>
+    {{form.username}}
+    </div>
+    <div class="mb-3">
+        <label for="{{form.password1_id_for_label}}">Password</label>
+    {{form.password1}}
+    </div>
+    <div class="mb-3">
+        <label for="{{form.password2_id_for_label}}">Confirm Password</label>
+    {{form.password2}}
+    </div>
+    <button>Submit</button>
+</form>
+{% endblock content %}
